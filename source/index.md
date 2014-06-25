@@ -61,6 +61,15 @@ git = "https://github.com/bjz/color-rs.git"
 You added the `color` library, which provides simple conversions
 between different color types.
 
+You can also import local file paths using if required:
+
+```toml
+[dependencies.my_dep]
+
+path = "deps/my_dep"
+```
+
+
 Now, you can pull in that library using `extern crate` in
 `hello-world.rs`.
 
@@ -108,3 +117,20 @@ To update the repository from Github, pass the `--update-remotes` (or
 <span style="font-weight: bold" class="s1">    Updating</span> git repository `https://github.com/bjz/color-rs.git`
 <span style="font-weight: bold" class="s1">   Compiling</span> color v1.0.0 (https://github.com/bjz/color-rs.git)
 <span style="font-weight: bold" class="s1">   Compiling</span> hello-world v0.1.0</code></pre>
+
+
+# Adding cargo to a library
+
+If you're building an exportable crate to depend on, you can use the `lib` directive:
+
+```toml
+[package]
+name = "my_library"
+version = "0.1.0"
+authors = [ "foo@bar.com" ]
+
+[[lib]]
+name = "my_library"
+path = "src/my_library.rs"
+type = "lib"
+```
